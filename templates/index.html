@@ -1,0 +1,41 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot Interface</title>
+    <style>
+      /* Add your CSS styles here */
+    </style>
+  </head>
+  <body>
+    <div id="chat-container">
+      <div id="chat-log"></div>
+      <input type="text" id="message-input" />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+    <script>
+      function sendMessage() {
+        var message = document.getElementById("message-input").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/chatbot");
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = xhr.responseText;
+            document.getElementById("chat-log").innerHTML +=
+              "<p>You: " + message + "</p>";
+            document.getElementById("chat-log").innerHTML +=
+              "<p>Chatbot: " + response + "</p>";
+            document.getElementById("message-input").value = "";
+          }
+        };
+        xhr.send("message=" + encodeURIComponent(message));
+      }
+    </script>
+  </body>
+</html>
