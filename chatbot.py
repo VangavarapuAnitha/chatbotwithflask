@@ -139,7 +139,7 @@ rules = {
     "what is the process to join in hostel":["After successful admission in college student has to take admission in Hostel Office"],
     "Hostel Fees":["Admission fee:5500 and Monthly Hostel  Fee:2000-3000"],
     "How to pay Hostel Admission , Monthly Fee":["Through online(Payment Portal) or challana"],
-    "How hostel monthly bill fee fees calculated calculate":["Based on number of days student present in the hostel+ 750 maintainence fee"],
+    "How hostel monthly bill fee fees calculated calculate structure":["Based on number of days student present in the hostel+ 750 maintainence fee"],
     "Outing for Students live lived stays who are staying in Hostel":["Every public holiday 8AM-5PM and Workinng Days 4PM-6PM"],
     "What is Maintainance Fee Bill":["Maintanance Fee is 750 per each student in everymonth to maintain hostel blocks cleanly"],
     "Why What is the Reason A I Student Women Girl have to join choose SPMVV Sri Padmavati Mahila Visvavidyalayam Women's University":["Along with studies in SPMVV there are so many things which are advantage to students/women/girl such as:Indoor Stadium(Gym,BasketBall Court etc), Yoga, PlayGround etc"],
