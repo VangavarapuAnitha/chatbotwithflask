@@ -3,11 +3,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chatbot Interface</title>
+    <title>SPMVV Chatbot</title>
     <style>
-      /* Basic CSS Styles */
-
       /* Reset default margin and padding */
       body,
       html {
@@ -17,6 +16,7 @@
 
       /* Container styles */
       .chat-container {
+        align-items: center;
         max-width: 800px;
         margin: 0 auto;
         padding: 20px;
@@ -66,16 +66,68 @@
       .fade-in {
         animation: fadeIn 0.5s ease;
       }
+      .user-message {
+        width: 50%;
+        background-color: #dcf8c6; /* Light green background */
+        color: #000; /* Black text */
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px 0;
+        text-align: right; /* Align to the right */
+        animation: fadeInRight 0.5s ease; /* Fade in from right animation */
+      }
+
+      /* Chatbot response styles */
+      .chatbot-response {
+        width: 50%;
+        background-color: #eaeaea; /* Light gray background */
+        color: #000; /* Black text */
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px 0;
+        text-align: left; /* Align to the left */
+        animation: fadeInLeft 0.5s ease; /* Fade in from left animation */
+      }
+
+      /* Animation for user input */
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px); /* Move from right */
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0); /* Move to original position */
+        }
+      }
+
+      /* Animation for chatbot response */
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px); /* Move from left */
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0); /* Move to original position */
+        }
+      }
     </style>
   </head>
   <body>
     <div id="chat-container">
-      <div id="chat-log"></div>
-      <input type="text" id="message-input" />
+      <div id="chat-log" class="chat-log"></div>
+      <input
+        type="text"
+        id="message-input"
+        placeholder="Type your message..."
+      />
       <button onclick="sendMessage()">Send</button>
     </div>
     <script>
       function sendMessage() {
+        // Start Measuring time
+        var startTime = performance.now();
         var message = document.getElementById("message-input").value;
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/chatbot");
@@ -86,10 +138,19 @@
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4 && xhr.status === 200) {
             var response = xhr.responseText;
-            document.getElementById("chat-log").innerHTML +=
-              "<p>You: " + message + "</p>";
-            document.getElementById("chat-log").innerHTML +=
-              "<p>Chatbot: " + response + "</p>";
+            // End Measuring Time
+            var endTime = performance.now();
+            var executionTime = endTime - startTime;
+            console.log("ExecutionTime:" + executionTime + "milliseconds");
+            var chatLog = document.querySelector(".chat-log");
+            var userMessage = document.createElement("div");
+            userMessage.classList.add("user-message", "fade-in");
+            userMessage.textContent = "You: " + message;
+            var chatbotResponse = document.createElement("div");
+            chatbotResponse.classList.add("chatbot-response", "fade-in");
+            chatbotResponse.textContent = "Chatbot: " + response;
+            chatLog.appendChild(userMessage);
+            chatLog.appendChild(chatbotResponse);
             document.getElementById("message-input").value = "";
           }
         };
