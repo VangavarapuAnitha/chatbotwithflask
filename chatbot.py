@@ -4,9 +4,9 @@ nlp = spacy.load('en_core_web_sm')
 
 rules = {
     "hi": ["Hello!", "Hi there!", "Hey!"],
-    "logo of spmvv":("Here is a logo of spmvv","spmvv-logo.jpg"),
     "Sri Padmavati Mahila Visvavidyalayam or Women's University or SPMVV": ["This is a women's university founded in 1983, accredited with four stars with 'Grade A+' by the National Assessment and Accreditation Council (NAAC) and International Certificate ISO."],
     "how are you": ["I am good, thank you!", "I am doing fine, thanks!"],
+    "how many departments there in spmvv":["SPMVV provides 15 departments under different programs"],
     "what courses do you or SPMVV offer or offered or offers": ["This year the University offers 59 variety of courses including Computer Science, Business, and Engineering."],
     "admissions": ["For admissions information, please visit our website or contact the admissions office."],
     "mca or computer science or applications": ["The Computer Science Department offers MCA Course since 1987. It also offers Ph.D./M.Phil. Research programme."],
